@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 // @desc 회원가입
 // @routes POST api/v1/user
-// @request email , passwd
+// @request email , passwd ,age
 // @response success
 exports.signupUser = async (req, res, next) => {
   let email = req.body.email;
@@ -90,7 +90,7 @@ exports.loginUser = async (req, res, next) => {
 // @request  token
 // @response success
 exports.logoutUser = async (req, res, next) => {
-  let user_id = req.user.user_id;
+  let user_id = req.user.id;
   let query = `delete from book_token where user_id = ${user_id}`;
   try {
     [reslut] = await connection.query(query);
