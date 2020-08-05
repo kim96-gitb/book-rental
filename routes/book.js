@@ -11,6 +11,6 @@ const router = express.Router();
 router.route("/").get(selectbook);
 router.route("/rental").post(auth, rentalBook);
 router.route("/me").get(auth, myBook);
-router.route("/:id").delete(auth, returnBook);
+router.route("/return").delete(auth, returnBook);
 
 module.exports = router;
