@@ -1,13 +1,12 @@
 const mysql = require("mysql2");
-const db_config = require("./config/db-config.json");
 //커넥션 풀 (connection pool)을 만든다
 // 이유 , 풀이 알아서 커넥션 연결을 컨트롤한다.
 
 const pool = mysql.createPool({
-  host: db_config.MYSQL_HOST,
-  user: db_config.MYSQL_USER,
-  database: db_config.DB_NAME,
-  password: db_config.DB_PASSWORD,
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
   waitForConnetions: true,
   connectionLimit: 10,
 });
