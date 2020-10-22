@@ -1,7 +1,7 @@
 const mysql = require("mysql2");
 //커넥션 풀 (connection pool)을 만든다
 // 이유 , 풀이 알아서 커넥션 연결을 컨트롤한다.
-//
+
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST,
   user: process.env.MYSQL_USER,

@@ -6,7 +6,7 @@ const {
   myBook,
   returnBook,
 } = require("../controller/book");
-//
+
 const router = express.Router();
 router.route("/").get(selectbook);
 router.route("/rental").post(auth, rentalBook);
