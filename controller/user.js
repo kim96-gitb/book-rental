@@ -7,6 +7,7 @@ const jwt = require("jsonwebtoken");
 // @routes POST api/v1/user
 // @request email , passwd ,age
 // @response success
+//
 exports.signupUser = async (req, res, next) => {
   let email = req.body.email;
   let passwd = req.body.passwd;
