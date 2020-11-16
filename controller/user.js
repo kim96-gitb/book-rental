@@ -9,19 +9,19 @@ const jwt = require("jsonwebtoken");
 // @response success
 
 exports.signupUser = async (req, res, next) => {
-  let email = req.body.email;
+  let user_name = req.body.user_name;
   let passwd = req.body.passwd;
-  let age = req.body.age;
+ 
 
   const hashedPasswd = await bcrypt.hash(passwd, 4);
-  let query = `insert into book_user(email , passwd , age) values("${email}","${hashedPasswd}" ,${age})`;
+  let query = `insert into test_user(user_name , passwd) values("${user_name}","${hashedPasswd}")`;
 
-  if (!email || !passwd) {
+  if (!user_name || !passwd) {
     res.status(500).json({ success: false, msg: "이메일 비밀번호 입력하세요" });
     return;
   }
 
-  if (!validator.isEmail(email)) {
+  if (!validator.isEmail(user_name)) {
     res.status(500).json({ success: false, msg: "이메일 형식이 이상해요" });
     return;
   }
@@ -41,7 +41,7 @@ exports.signupUser = async (req, res, next) => {
     }
   }
   let token = jwt.sign({ user_id: user_id }, process.env.ACCESS_TOKEN_SECRET);
-  query = `insert into book_token(token , user_id) values ("${token}",${user_id})`;
+  query = `insert into test_token(token , user_id) values ("${token}",${user_id})`;
   try {
     [reslut] = await connection.query(query);
     res.status(200).json({ success: true, msg: reslut });
